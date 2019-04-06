@@ -1,5 +1,5 @@
 # bash programing cookbook(in progress)
-bash编程、高级bash编程、bash编程by example
+bash编程、高级bash编程、bash编程by examples
 
 ## hello world
 `vim hello.sh`, 写入内容
@@ -108,7 +108,7 @@ log has been cleaned up
 
 ### 注释 (#)
 
-test.sh
+`test.sh`
 ```
 #!/bin/bash
 
@@ -119,7 +119,7 @@ echo The # 这里开始一个注释
 echo $(( 2#101011 ))     # 数制转换（使用二进制表示），不是一个注释，双括号表示对于数字的处理
 ```
 
-output
+`sh test.sh` output
 ```
 bash-3.2$ sh test.sh
 The # here does not begin a comment.
@@ -130,6 +130,68 @@ The
 ```
 
 ### 分号 (;)
+使用分号（;）可以在同一行上写两个或两个以上的命令  
+``` bash
+#!/bin/bash
+ echo hello; echo there
+ filename=ttt.sh
+ if [ -e "$filename" ]; then    # 注意: "if"和"then"需要分隔，-e用于判断文件是否存在
+     echo "File $filename exists."; cp $filename $filename.bak
+ else
+     echo "File $filename not found."; touch $filename
+ fi; echo "File test complete."
+```
+
+使用双分号（;;）可以终止case选项  
+``` bash
+case EXPRESSION in
+
+  PATTERN_1)
+    STATEMENTS
+    ;;
+
+  PATTERN_2)
+    STATEMENTS
+    ;;
+
+  PATTERN_N)
+    STATEMENTS
+    ;;
+
+  *)
+    STATEMENTS
+    ;;
+esac
+```
+
+case语句举例  
+``` bash
+#!/bin/bash
+
+echo -n "Enter the name of a country: "
+read COUNTRY
+
+echo -n "The official language of $COUNTRY is "
+
+case $COUNTRY in
+
+  Lithuania)
+    echo -n "Lithuanian"
+    ;;
+
+  Romania | Moldova)
+    echo -n "Romanian"
+    ;;
+
+  Italy | "San Marino" | Switzerland | "Vatican City")
+    echo -n "Italian"
+    ;;
+
+  *)
+    echo -n "unknown"
+    ;;
+esac
+```
 
 ## 引用说明
 大部分的示例来自于实验楼课程：  
